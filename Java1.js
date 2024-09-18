@@ -37,7 +37,7 @@ function updateContador(){
     document.getElementById("contar").innerHTML = items.length;
 }
 
-        
+window.onload = MostraDades;       
 
 
         
