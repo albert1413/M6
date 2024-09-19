@@ -6,7 +6,7 @@
     </h1>
     <div id="error-message" style="color: red;"></div>
 
-    <input type="text" id= "a" class = "numero"> 
+    <input type="text" id="a" class="numero" onkeyup="Error(this.value, this, document.getElementById('error-message'))"> 
 
     <button onclick="Numeros(); MostraDades()"> ADD </button>
     <span id="contar">0</span>
@@ -15,16 +15,4 @@
     <br>
     
     <div id="items"></div>
-
-
-
 </html>
-
-
-
-
-
-
-
-
-
