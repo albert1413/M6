@@ -1,0 +1,2 @@
+document.getElementById("a").value ------------------ Al document agarra el element amb id=a, i retorna el seu valor
+document.forms[0]["a"].value ------------ Dins al document agafar al primer formulari amb la id=a, el valor que té
