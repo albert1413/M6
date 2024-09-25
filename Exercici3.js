@@ -9,38 +9,51 @@ function obtenirDadesCrypto() {
         // Guardem les dades al localStorage
         localStorage.setItem('cryptoDades', JSON.stringify(dades));
   
-        // Mostrem les dades a la pàgina
+        // Mostrem les dades a la pàgina utilitzant DataTables
         mostrarDades();
       });
   }
   
-  // Funció per mostrar les dades a la pàgina
+  // Funció per mostrar les dades a la taula utilitzant DataTables
   function mostrarDades() {
     // Recuperem les dades del localStorage
     var dades = localStorage.getItem('cryptoDades');
     // Convertim les dades de nou a un objecte JavaScript
     dades = JSON.parse(dades);
   
-    var contenedor = document.getElementById('crypto-data');
-  
-    // Comprovem que hi hagi dades
     if (dades) {
-      var html = '';  // Creem una cadena de text buida per afegir les dades
+      // Taula HTML amb DataTables
+      $('#crypto-table').DataTable({
+        data: dades, // Les dades a mostrar
+        columns: [
+          { data: 'name' },            // Columna pel nom de la criptomoneda
+          { data: 'current_price' },   // Columna pel preu en USD
+          { data: 'market_cap' },       // Columna per la capitalització de mercat
+          { data: null,            // COlumna pel boto eliminar
+            render: function (data, type, row, meta) {
+                return '<button class="eliminar-btn" data-index="' + meta.row + '">Eliminar</button>';
+            }
+          }
+        ],
+        destroy: true  // Permet reinicialitzar la taula si es crida múltiples vegades
+      });
+      $('#crypto-table tbody').on('click', '.eliminar-btn', function() {
+        // Obtenim l'índex de la fila seleccionada
+        var index = $(this).attr('data-index');
   
-      // Per cada criptomoneda, afegim la informació a la cadena de text
-      for (var i = 0; i < dades.length; i++) {
-        html += '<p><strong>Nom:</strong> ' + dades[i].name + '<br>';
-        html += '<strong>Preu:</strong> ' + dades[i].current_price + ' USD<br>';
-        html += '<strong>Capitalització de Mercat:</strong> ' + dades[i].market_cap + ' USD</p>';
-      }
+        // Eliminem el registre de les dades
+        dades.splice(index, 1);
   
-      // Afegim el contingut HTML al div
-      contenedor.innerHTML = html;
+        // Actualitzem el localStorage amb les dades actualitzades
+        localStorage.setItem('cryptoDades', JSON.stringify(dades));
+  
+        // Actualitzem la taula
+        mostrarDades();
+      });
     } else {
-      contenedor.innerHTML = 'No hi ha dades disponibles.';
+      console.log('No hi ha dades disponibles.');
     }
   }
-  
   // Quan es carrega la pàgina, obtenim les dades
   obtenirDadesCrypto();
   

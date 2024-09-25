@@ -3,11 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CoinGecko API Dades</title>
+  <title>Dades de Criptomonedes amb DataTables</title>
+
+  <!-- Incloure jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Incloure DataTables CSS i JS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+  
 </head>
 <body>
-  <h1>Dades de Criptomonedes</h1>
-  <div id="crypto-data"></div>
+  <h1>Dades de Criptomonedes amb DataTables</h1>
+
+  <!-- Taula on es mostraran les dades de les criptomonedes -->
+  <table id="crypto-table" class="display">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Preu (USD)</th>
+        <th>Capitalització de Mercat (USD)</th>
+        <th>Accions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
   <!-- Enllaç al fitxer JavaScript extern -->
   <script src="Exercici3.js"></script>
