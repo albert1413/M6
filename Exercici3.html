@@ -5,22 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dades de Criptomonedes amb DataTables</title>
 
-  <!-- Incloure jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <!-- Incloure DataTables CSS i JS -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
-  
+  <link rel="stylesheet" type="text/css" href="Exercici3.css">
 </head>
+
 <body>
   <h1>Dades de Criptomonedes amb DataTables</h1>
 
-  <!-- Taula on es mostraran les dades de les criptomonedes -->
+  <!-- Missatge de retroalimentació -->
+  <div id="feedback"></div>
+
   <table id="crypto-table" class="display">
     <thead>
       <tr>
-        <th>Nom</th>
+        <th id=" nom">Nom</th>
+
         <th>Preu (USD)</th>
         <th>Capitalització de Mercat (USD)</th>
         <th>Accions</th>
@@ -29,7 +30,6 @@
     <tbody></tbody>
   </table>
 
-  <!-- Enllaç al fitxer JavaScript extern -->
   <script src="Exercici3.js"></script>
 </body>
 </html>
