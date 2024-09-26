@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercici 4</title>
+
+  <script src="Exercici4.js"></script>
+  <link rel="stylesheet" type="text/css" href="Exercici4.css">
+</head>
+
+<body>
+
+    <h1>Exercici 4</h1>
+    
+    <div id="factura-info"></div>
+    <p>
+        <label for="clientNom">Nom del Client:</label>
+        <input type="text" id="clientNom" placeholder="Nom del client">
+    </p>
+    <p>
+        <label for="adreca">Adreça:</label>
+        <input type="text" id="adreca" placeholder="Adreça del client">
+    </p>
+    <p>
+        <label for="ciutat">Ciutat:</label>
+        <input type="text" id="ciutat" placeholder="Ciutat">
+    </p>
+    <p>
+        <label for="facturaNo">Inv. No:</label>
+        <input type="text" id="facturaNo" placeholder="Número de factura">
+    </p>
+    <p>
+        <label for="dataFactura">Inv. Date:</label>
+        <input type="date" id="dataFactura">
+    </p>
+
+    <table border="10" id="table" class="display">
+        <thead>
+            <tr>
+                <th>Objecte</th>
+                <th>Quantitat</th>
+                <th>Preu</th>
+                <th>Subtotal</th>
+                <th><button class = "btn-afegir" onclick="afegirLinia()">+</button></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" placeholder="Objecte"></td>
+                <td><input type="number" value="1" oninput="calcularTotal()"></td>
+                <td><input type="number" value="0" step="0.01" oninput="calcularTotal()"></td>
+                <td>0.00</td>
+                <td><button class = "btn-eliminar" onclick="eliminarLinia(this)">X</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="controls">
+        <button onclick="guardarFactura()">Guardar Factura</button> 
+        <div id="Calculs">
+            <p>
+                <label for="descompte">Descompte (%):</label>
+                <input type="number" id="descompte" value="0" oninput="calcularTotal()"> %
+            </p>
+            <h2>Total: € <span id="totalFactura">0.00</span></h2>
+        </div>
+    </div>
+    
+</body>
+</html>

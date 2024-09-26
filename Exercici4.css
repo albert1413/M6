@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#factura-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#factura-info p {
+    flex-basis: 50%; /* Cada camp ocupa la meitat de l'ample del contenidor */
+}
+
+#table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#controls button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#controls button:hover {
+    background-color: #45a049;
+}
+
+#calculs {
+    text-align: right; /* Col·loca el descompte i el total a la dreta */
+}
+
+#calculs p, h2 {
+    margin: 0;
+}
+
+.btn-afegir {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn-eliminar {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn-eliminar:hover, .btn-afegir:hover {
+    opacity: 0.8; /* Cambia la opacidad al pasar el ratón */
+}
