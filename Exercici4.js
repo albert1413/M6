@@ -1,52 +1,64 @@
-// Funció per afegir una nova línia a la taula
+// Función para añadir una línea (fila) a la tabla de objetos
 function afegirLinia() {
-    const taula = document.getElementById("table").getElementsByTagName('tbody')[0];
-    const fila = taula.insertRow(); // Afegim una nova fila
+    const table = document.querySelector('#table tbody');
+    const row = document.createElement('tr');
 
-    // Creem les cel·les i afegim els inputs en l'HTML directament
-    const celObjecte = fila.insertCell(0); 
-    const celQuantitat = fila.insertCell(1);
-    const celPreu = fila.insertCell(2);
-    const celTotal = fila.insertCell(3);
-    const celEliminar = fila.insertCell(4);
-
-    // Afegim els inputs directament des de l'HTML
-    celObjecte.innerHTML = "<input type='text' placeholder='Objecte'>"; 
-    celQuantitat.innerHTML = "<input type='number' value='1' oninput='calcularTotal()'>";
-    celPreu.innerHTML = "<input type='number' value='0' step='0.01' oninput='calcularTotal()'>";
-    celTotal.textContent = "0.00"; // Subtotal inicial
-    celEliminar.innerHTML = "<button class = 'btn-eliminar' onclick='eliminarLinia(this)'>X</button>";
+    row.innerHTML = `
+        <td><input type="text" placeholder="Objecte"></td>
+        <td><input type="number" value="1" oninput="calcularTotal()"></td>
+        <td><input type="number" value="0" step="0.01" oninput="calcularTotal()"></td>
+        <td>0.00</td>
+        <td><button class="btn-eliminar" onclick="eliminarLinia(this)">X</button></td>
+    `;
+    table.appendChild(row);
 }
 
-// Funció per eliminar una línia
-function eliminarLinia(boto) {
-    const fila = boto.parentNode.parentNode; // Trobem la fila de l'element
-    fila.remove(); // Eliminem la fila
-    calcularTotal(); // Recalculem el total després d'eliminar
+// Función para eliminar una línea (fila) de la tabla
+function eliminarLinia(button) {
+    const row = button.parentNode.parentNode;
+    row.remove();
+    calcularTotal();  // Recalcular el total después de eliminar una fila
 }
 
-// Funció per calcular el total de la factura
+// Función para calcular el total de la factura
 function calcularTotal() {
-    const taula = document.getElementById('table').getElementsByTagName('tbody')[0];
     let total = 0;
-
-    // Iterem per totes les files per calcular el subtotal
-    for (let i = 0; i < taula.rows.length; i++) {
-        const quantitat = taula.rows[i].cells[1].children[0].value; // Correcció de l'índex
-        const preu = taula.rows[i].cells[2].children[0].value; // Correcció de l'índex
+    document.querySelectorAll('#table tbody tr').forEach((row) => {
+        const quantitat = parseFloat(row.children[1].children[0].value) || 0;
+        const preu = parseFloat(row.children[2].children[0].value) || 0;
         const subtotal = quantitat * preu;
+        row.children[3].textContent = subtotal.toFixed(2);
+        total += subtotal;
+    });
 
-        // Actualitzem el subtotal de la fila
-        taula.rows[i].cells[3].textContent = subtotal.toFixed(2); // Actualització correcta del subtotal
-        total += subtotal; // Suma al total
-    }
+    const descompte = parseFloat(document.getElementById('descompte').value) || 0;
+    total -= total * (descompte / 100);
 
-    // Aplicar descompte si n'hi ha
-    const descompte = document.getElementById('descompte').value;
-    const totalAmbDescompte = total - (total * (descompte / 100));
-
-    // Actualitzar el total
-    document.getElementById('totalFactura').textContent = totalAmbDescompte.toFixed(2);
+    document.getElementById('totalFactura').textContent = total.toFixed(2);
 }
 
+// Función para guardar la factura en el localStorage
+function guardarFactura() {
+    const clientNom = document.getElementById('clientNom').value;
+    const adreca = document.getElementById('adreca').value;
+    const ciutat = document.getElementById('ciutat').value;
+    const facturaNo = document.getElementById('facturaNo').value;
+    const dataFactura = document.getElementById('dataFactura').value;
+    const totalFactura = document.getElementById('totalFactura').textContent;
 
+    const factura = {
+        clientNom,
+        adreca,
+        ciutat,
+        facturaNo,
+        dataFactura,
+        totalFactura,
+    };
+
+    // Guardar en localStorage
+    let factures = JSON.parse(localStorage.getItem('factures')) || [];
+    factures.push(factura);
+    localStorage.setItem('factures', JSON.stringify(factures));
+
+    alert('Factura guardada!');
+}

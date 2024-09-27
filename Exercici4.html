@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exercici 4</title>
+  <title>Exercici 4 - Crear Factura</title>
 
-  <script src="Exercici4.js"></script>
+  <script src="Exercici4.js"></script> <!-- Archivo de JavaScript externo -->
   <link rel="stylesheet" type="text/css" href="Exercici4.css">
 </head>
 
 <body>
 
-    <h1>Exercici 4</h1>
+    <h1>Exercici 4 - Crear Factura</h1>
     
     <div id="factura-info"></div>
     <p>
@@ -27,11 +27,11 @@
         <input type="text" id="ciutat" placeholder="Ciutat">
     </p>
     <p>
-        <label for="facturaNo">Inv. No:</label>
+        <label for="facturaNo">Número de Factura:</label>
         <input type="text" id="facturaNo" placeholder="Número de factura">
     </p>
     <p>
-        <label for="dataFactura">Inv. Date:</label>
+        <label for="dataFactura">Data de la Factura:</label>
         <input type="date" id="dataFactura">
     </p>
 
@@ -42,7 +42,7 @@
                 <th>Quantitat</th>
                 <th>Preu</th>
                 <th>Subtotal</th>
-                <th><button class = "btn-afegir" onclick="afegirLinia()">+</button></th>
+                <th><button class="btn-afegir" onclick="afegirLinia()">+</button></th>
             </tr>
         </thead>
         <tbody>
@@ -51,13 +51,13 @@
                 <td><input type="number" value="1" oninput="calcularTotal()"></td>
                 <td><input type="number" value="0" step="0.01" oninput="calcularTotal()"></td>
                 <td>0.00</td>
-                <td><button class = "btn-eliminar" onclick="eliminarLinia(this)">X</button></td>
+                <td><button class="btn-eliminar" onclick="eliminarLinia(this)">X</button></td>
             </tr>
         </tbody>
     </table>
 
     <div id="controls">
-        <button onclick="guardarFactura()">Guardar Factura</button> 
+        <button onclick="guardarFactura() ">Guardar Factura</button> 
         <div id="Calculs">
             <p>
                 <label for="descompte">Descompte (%):</label>
@@ -66,6 +66,5 @@
             <h2>Total: € <span id="totalFactura">0.00</span></h2>
         </div>
     </div>
-    
-</body>
-</html>
+
+    <!-- En

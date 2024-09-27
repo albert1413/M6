@@ -3,30 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exercici 4</title>
-  <script src="Exercici4-2.js"></script>
-  <link rel="stylesheet" type="text/css" href="Exercici4.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+  <title>Gestió de Factures</title>
 
+  <!-- Estilos para DataTables y el formulario -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+
+  <!-- Incluir el archivo de JavaScript -->
+  <script src="Exercici4-2.js" defer></script>
+
+  <style>
+    .hidden {
+        display: none;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+    #totalSection {
+        text-align: right;
+        margin-top: 20px;
+    }
+  </style>
 </head>
 
 <body>
-    <h1>Exercici 4</h1>
-    <table id="table" class="display">
-        <thead>
-            <tr>
-                <th>Estat</th>
-                <th>ID ordre</th>
-                <th>Data</th>
-                <th>Accions</th>
-                <th>Client</th>
-                <th>Pago</th> 
-            </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+    <h1>Gestió de Factures</h1>
 
+    <!-- Tabla para mostrar facturas -->
+    <div id="facturesTable">
+        <table border="1" id="table2" class="display">
+            <thead>
+                <tr>
+                    <th>Estat</th>
+                    <th>ID</th>
+                    <th>Data</th>
+                    <th>Due Data</th>
+                    <th>Client</th>
+                    <th>Forma Pagat</th>
+                    <th>Total ha pagar (€)</th>
+                    <th>Accions</th>
+                </tr>
+            </thead>
+            <tbody id="facturesBody"></tbody>
+        </table>
+        <button onclick="mostrarFormFactura()">Nou Client</button>
+    </div>
+
+    <!-- Formulario para crear/editar facturas -->
+    <div id="formFactura" class="hidden">
+        <h2 id="formTitle">Crear Factura</h2>
+        <p>
+            <label for="clientNom">Nom del Client:</label>
+            <input type="text" id="clientNom" placeholder="Nom del client">
+        </p>
+        <p>
+            <label for="adreca">Adreça:</label>
+            <input type="text" id="adreca" placeholder="Adreça del client">
+        </p>
+        <p>
+            <label for="ciutat">Ciutat:</label>
+            <input type="text" id="ciutat" placeholder="Ciutat">
+        </p>
+        <p>
+            <label for="facturaNo">Número de Factura:</label>
+            <input type="text" id="facturaNo" placeholder="Número de factura">
+        </p>
+        <p>
+            <label for="dataFactura">Data de la Factura:</label>
+            <input type="date" id="dataFactura">
+        </p>
+        <p>
+            <label for="dueData">Due Data:</label>
+            <input type="date" id="dueData">
+        </p>
+        <p>
+            <label for="formaPagat">Forma Pagat:</label>
+            <input type="text" id="formaPagat" placeholder="Forma de Pagament">
+        </p>
+
+        <!-- Tabla para agregar productos -->
+        <h3>Productes</h3>
+        <table id="productesTable">
+            <thead>
+                <tr>
+                    <th>Producte</th>
+                    <th>Quantitat</th>
+                    <th>Preu (€)</th>
+                    <th>Subtotal (€)</th>
+                    <th><button type="button" onclick="afegirProducte()">+</button></th>
+                </tr>
+            </thead>
+            <tbody id="productesBody"></tbody>
+        </table>
+
+        <!-- Sección de total y descuento -->
+        <div id="totalSection">
+            <p>
+                <label for="descompte">Descompte (%):</label>
+                <input type="number" id="descompte" value="0" oninput="calcularTotal()"> %
+            </p>
+            <h3>Total: € <span id="totalFactura">0.00</span></h3>
+        </div>
+
+        <div id="controls">
+            <button onclick="guardarFactura()">Guardar Factura</button> 
+            <button onclick="cancelarFactura()">Cancelar</button> 
+        </div>
+    </div>
 </body>
 </html>
