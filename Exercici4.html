@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exercici 4 - Crear Factura</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercici 4 - Crear Factura</title>
 
-  <script src="Exercici4.js"></script> <!-- Archivo de JavaScript externo -->
-  <link rel="stylesheet" type="text/css" href="Exercici4.css">
+    <script src="Exercici4.js"></script> <!-- Archivo de JavaScript externo -->
+    <link rel="stylesheet" type="text/css" href="Exercici4.css">
 </head>
 
 <body>
 
     <h1>Exercici 4 - Crear Factura</h1>
-    
+
     <div id="factura-info"></div>
     <p>
         <label for="clientNom">Nom del Client:</label>
@@ -34,11 +34,24 @@
         <label for="dataFactura">Data de la Factura:</label>
         <input type="date" id="dataFactura">
     </p>
+    <p>
+        <label for="dueData">Due Data:</label>
+        <input type="date" id="dueData">
+    </p>
+    <p>
+        <label for="formaPagat">Forma Pagat:</label>
+        <select id="formaPagat">
+            <option value="" disabled selected>Selecciona una forma de pagament</option>
+            <option value="cash">Cash</option>
+            <option value="targeta">Targeta</option>
+        </select>
+    </p>    
 
     <table border="10" id="table" class="display">
         <thead>
             <tr>
-                <th>Objecte</th>
+                <th>#</th>
+                <th>Producte</th>
                 <th>Quantitat</th>
                 <th>Preu</th>
                 <th>Subtotal</th>
@@ -46,18 +59,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr id="product-0">
+                <td>1</td>
                 <td><input type="text" placeholder="Objecte"></td>
                 <td><input type="number" value="1" oninput="calcularTotal()"></td>
                 <td><input type="number" value="0" step="0.01" oninput="calcularTotal()"></td>
                 <td>0.00</td>
-                <td><button class="btn-eliminar" onclick="eliminarLinia(this)">X</button></td>
+                <td><button class="btn-eliminar" onclick="eliminarLinia(0)">X</button></td>
             </tr>
         </tbody>
     </table>
 
     <div id="controls">
-        <button onclick="guardarFactura() ">Guardar Factura</button> 
+        <button onclick="guardarFactura()">Guardar Factura</button> 
         <div id="Calculs">
             <p>
                 <label for="descompte">Descompte (%):</label>
@@ -66,5 +80,5 @@
             <h2>Total: € <span id="totalFactura">0.00</span></h2>
         </div>
     </div>
-
-    <!-- En
+</body>
+</html>
