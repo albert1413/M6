@@ -57,7 +57,9 @@
 
     <!-- Formulario para crear/editar facturas -->
     <div id="formFactura" class="hidden">
-        <h2 id="formTitle">Crear Factura</h2>
+        <h1>Factura</h1>
+
+        <div id="factura-info"></div>
         <p>
             <label for="clientNom">Nom del Client:</label>
             <input type="text" id="clientNom" placeholder="Nom del client">
@@ -84,36 +86,46 @@
         </p>
         <p>
             <label for="formaPagat">Forma Pagat:</label>
-            <input type="text" id="formaPagat" placeholder="Forma de Pagament">
-        </p>
+            <select id="formaPagat">
+                <option value="" disabled selected>Selecciona una forma de pagament</option>
+                <option value="cash">Cash</option>
+                <option value="targeta">Targeta</option>
+            </select>
+        </p>    
 
-        <!-- Tabla para agregar productos -->
         <h3>Productes</h3>
-        <table border= 10 id ="productesTable">
+        <table border="10" id="table" class="display">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Producte</th>
                     <th>Quantitat</th>
-                    <th>Preu (€)</th>
-                    <th>Subtotal (€)</th>
-                    <th><button type="button" onclick="afegirProducte()">+</button></th>
+                    <th>Preu</th>
+                    <th>Subtotal</th>
+                    <th><button class="btn-afegir" onclick="afegirLinia()">+</button></th>
                 </tr>
             </thead>
-            <tbody id="productesBody"></tbody>
+            <tbody>
+                <tr id="product-0">
+                    <td>1</td>
+                    <td><input type="text" placeholder="Objecte"></td>
+                    <td><input type="number" value="1" oninput="calcularTotal()"></td>
+                    <td><input type="number" value="0" step="0.01" oninput="calcularTotal()"></td>
+                    <td>0 .00</td>
+                    <td><button class="btn-eliminar" onclick="eliminarLinia(0)">X</button></td>
+                </tr>
+            </tbody>
         </table>
-
-        <!-- Sección de total y descuento -->
-        <div id="totalSection">
-            <p>
-                <label for="descompte">Descompte (%):</label>
-                <input type="number" id="descompte" value="0" oninput="calcularTotal()"> %
-            </p>
-            <h3>Total: € <span id="totalFactura">0.00</span></h3>
-        </div>
 
         <div id="controls">
             <button onclick="guardarFactura()">Guardar Factura</button> 
-            <button onclick="cancelarFactura()">Cancelar</button> 
+            <div id="Calculs">
+                <p>
+                    <label for="descompte">Descompte (%):</label>
+                    <input type="number" id="descompte" value="0" oninput="calcularTotal()"> %
+                </p>
+                <h2>Total: € <span id="totalFactura">0.00</span></h2>
+            </div>
         </div>
     </div>
 </body>
